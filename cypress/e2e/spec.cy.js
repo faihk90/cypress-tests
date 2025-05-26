@@ -1,6 +1,4 @@
 
-
-
 describe('novibet task1',() => {
   beforeEach(() => {
     cy.visit('https://www.novibet.gr/en/live-betting'); 
