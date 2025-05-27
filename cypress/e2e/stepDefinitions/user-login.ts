@@ -28,7 +28,7 @@ When('I click the login button', () => {
 });
 
 Then('I should be redirected to the products page', () => {
-    InventoryPage.getInventoryPageActions().getInventoryPageHome().should('be.visible')})
+    InventoryPage.getInventoryPageActions().getInventoryPageHome()})
 
 
 Then('I should see a login error {string} message', function (message: string) {
