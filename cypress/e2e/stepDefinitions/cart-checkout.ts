@@ -31,7 +31,7 @@ Then('the cart should contain {string}', (productName: string) => {
 });
 
 Then('the cart should not contain {string}', (productName: string) => {
-  CartPage.getCartPageActions().getCartItems().should('not.contain.text', productName);
+  CartPage.getCartPageActions().getCartItems().should('not.exist');
 });
 
 When('I remove the product {string} from the cart', (productName: string) => {
@@ -71,16 +71,15 @@ Then('I should see the confirmation message', () => {
 });
 
 When('I click the {string} button on the review page', (button: "cancel" | "finish") => {
-  cy.get(`[data-test="${button}"]`).click();
+  if (button === "cancel") {
+    cy.get('.cart_cancel_link').click();
+  } else if (button === "finish") {
+    cy.get('.btn_action.cart_button').click();
+  }
 });
-
 
 Then('I should be redirected back to the cart page', () => {
   cy.url().should('include', '/cart.html');
 });
 
 
-When('I click the {string} button on the review page', (button: "cancel" | "finish") => {
-  const selector = `[data-test="${button}"]`;
-  cy.get(selector).click();
-});

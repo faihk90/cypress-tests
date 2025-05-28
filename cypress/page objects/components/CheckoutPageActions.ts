@@ -12,7 +12,7 @@ export class CheckoutPageActions {
     }
   
     getContinueButton() {
-      return cy.get('[data-test="continue"]');
+      return  cy.get('input.btn_primary.cart_button');
     }
   
     getCancelButton() {

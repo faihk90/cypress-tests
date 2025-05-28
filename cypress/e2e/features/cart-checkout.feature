@@ -3,6 +3,7 @@ Feature: Cart and Checkout functionality
   Background: User Login
     Given I open the login page
     When I enter username "standard_user" and password "secret_sauce"
+    And I click the login button
     Then I should be redirected to the products page
 
   Scenario: Add a product to the cart
@@ -32,8 +33,9 @@ Feature: Cart and Checkout functionality
     When I add the product "Sauce Labs Backpack" to the cart
     And I go to checkout
     And I enter first name "Fotini", last name "Tester", and postal code "12345"
+    Then I should be able to proceed to the next step
     And I click the "finish" button on the review page
-    Then I should see the confirmation message
+    And I should see the confirmation message
 
 
   Scenario: Cancel from the final checkout review page

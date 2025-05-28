@@ -5,7 +5,7 @@ export class CartPageActions {
     }
   
     getCheckoutButton() {
-      return cy.get('[data-test="checkout"]');
+      return cy.get('.btn_action.checkout_button')
     }
   
     getContinueShoppingButton() {
@@ -15,7 +15,7 @@ export class CartPageActions {
     getRemoveButtonByProductName(productName: string) {
       return cy.contains('.cart_item', productName)
                .find('button')
-               .contains('Remove');
+               .contains('REMOVE');
     }
   }
   
