@@ -12,7 +12,6 @@ Feature: Login feature
       | performance_glitch_user | secret_sauce |
       | problem_user            | secret_sauce |
 
-
   Scenario Outline: Login with invalid credentials
     Given I open the login page
     When I enter username "<username>" and password "<password>"

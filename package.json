@@ -10,7 +10,7 @@
     "allure:open": "allure open ./allure-report"
   },
   "cypress-cucumber-preprocessor": {
-    "stepDefinitions": "cypress/e2e/stepDefinitions/*.ts"
+    "stepDefinitions": "cypress/e2e/stepDefinitions/**/*.ts"
   },
   "keywords": [],
   "author": "",
