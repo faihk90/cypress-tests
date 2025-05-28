@@ -82,4 +82,19 @@ Then('I should be redirected back to the cart page', () => {
   cy.url().should('include', '/cart.html');
 });
 
+When('I click the continue button', () => {
+  CheckoutPage.getCheckoutPageActions().getContinueButton().click();
+});
 
+When('I enter first name {string} and leave last name and postal code empty', (firstName: string) => {
+  CheckoutPage.getCheckoutPageActions().getFirstNameField().type(firstName);
+});
+
+When('I enter first name {string} and last name {string} but leave postal code empty', (firstName: string, lastName: string) => {
+  CheckoutPage.getCheckoutPageActions().getFirstNameField().type(firstName);
+  CheckoutPage.getCheckoutPageActions().getLastNameField().type(lastName);
+});
+
+Then('I should see an error message {string}', (errorMessage: string) => {
+  cy.get('[data-test="error"]').should('be.visible').and('contain.text', errorMessage);
+});
