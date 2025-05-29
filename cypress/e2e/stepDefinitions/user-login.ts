@@ -3,8 +3,8 @@ globalThis.global = globalThis;
 
 
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { InventoryPage } from "../../page objects/pages/InventoryPage";
-import { LoginPage } from "../../page objects/pages/LoginPage";
+import { InventoryPage } from "../../page-objects/pages/InventoryPage";
+import { LoginPage } from "../../page-objects/pages/LoginPage";
 import { loginWithUserType, verifyLoginError } from "../../support/helpers/loginUtils";
 
 

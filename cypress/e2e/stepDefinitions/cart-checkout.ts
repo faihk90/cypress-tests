@@ -1,10 +1,10 @@
 /// <reference types="cypress" />
 
-import { InventoryPage } from "../../page objects/pages/InventoryPage";
-import { CartPage } from "../../page objects/pages/CartPage";
-import { CheckoutPage } from "../../page objects/pages/CheckoutPage";
+import { InventoryPage } from "../../page-objects/pages/InventoryPage";
+import { CartPage } from "../../page-objects/pages/CartPage";
+import { CheckoutPage } from "../../page-objects/pages/CheckoutPage";
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { CheckoutReviewPage } from "../../page objects/pages/CheckoutReviewPage";
+import { CheckoutReviewPage } from "../../page-objects/pages/CheckoutReviewPage";
 
 
 When('I add the product {string} to the cart', (productName: string) => {
