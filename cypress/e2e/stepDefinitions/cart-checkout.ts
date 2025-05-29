@@ -7,17 +7,6 @@ import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { CheckoutReviewPage } from "../../page objects/pages/CheckoutReviewPage";
 
 
-//When('I enter username {string} and password {string}', (username:string, password:string) => {
- // cy.get('[data-test="username"]').type(username);
- // cy.get('[data-test="password"]').type(password);
-//  cy.get('[data-test="login-button"]').click();
-//});
-
-// Then('I should be redirected to the products page', () => {
-//   cy.url().should('include', '/inventory.html');
-// });
-
-
 When('I add the product {string} to the cart', (productName: string) => {
   InventoryPage.getInventoryPageActions().getAddToCartButtonByName(productName).click();
 });
@@ -38,12 +27,18 @@ When('I remove the product {string} from the cart', (productName: string) => {
   CartPage.getCartPageActions().getRemoveButtonByProductName(productName).click();
 });
 
+Then('the cart icon should show {string} items', (expectedCount: string) => {
+  cy.get('.shopping_cart_badge')
+    .should('be.visible')
+    .and('have.text', expectedCount);
+});
+
 When('I click on the checkout button', () => {
   CartPage.getCartPageActions().getCheckoutButton().click();
 });
 
 Then('the checkout form should be displayed', () => {
-  CheckoutPage.getCheckoutPageActions().getFirstNameField().should('be.visible');
+  CheckoutPage.getCheckoutPageActions().getFirstName().should('be.visible');
 });
 
 When('I go to checkout', () => {
@@ -51,14 +46,24 @@ When('I go to checkout', () => {
   CartPage.getCartPageActions().getCheckoutButton().click();
 });
 
-When(
-  'I enter first name {string}, last name {string}, and postal code {string}',
-  (firstName: string, lastName: string, postalCode: string) => {
-    CheckoutPage.getCheckoutPageActions().getFirstNameField().type(firstName);
-    CheckoutPage.getCheckoutPageActions().getLastNameField().type(lastName);
-    CheckoutPage.getCheckoutPageActions().getPostalCodeField().type(postalCode);
-  }
-);
+When('I enter the checkout information for {string}', (userKey: string) => {
+  cy.fixture('checkoutUsers').then((users) => {
+    const user = users[userKey];
+
+    if (user.firstName && user.firstName.trim() !== "") {
+      CheckoutPage.getCheckoutPageActions().getFirstName().type(user.firstName);
+    }
+
+    if (user.lastName && user.lastName.trim() !== "") {
+      CheckoutPage.getCheckoutPageActions().getLastName().type(user.lastName);
+    }
+
+    if (user.postalCode && user.postalCode.trim() !== "") {
+      CheckoutPage.getCheckoutPageActions().getPostalCode().type(user.postalCode);
+    }
+  });
+});
+
 
 Then('I should be able to proceed to the next step', () => {
   CheckoutPage.getCheckoutPageActions().getContinueButton().click();
@@ -87,14 +92,19 @@ When('I click the continue button', () => {
 });
 
 When('I enter first name {string} and leave last name and postal code empty', (firstName: string) => {
-  CheckoutPage.getCheckoutPageActions().getFirstNameField().type(firstName);
+  CheckoutPage.getCheckoutPageActions().getFirstName().type(firstName);
 });
 
 When('I enter first name {string} and last name {string} but leave postal code empty', (firstName: string, lastName: string) => {
-  CheckoutPage.getCheckoutPageActions().getFirstNameField().type(firstName);
-  CheckoutPage.getCheckoutPageActions().getLastNameField().type(lastName);
+  CheckoutPage.getCheckoutPageActions().getFirstName().type(firstName);
+  CheckoutPage.getCheckoutPageActions().getLastName().type(lastName);
 });
 
-Then('I should see an error message {string}', (errorMessage: string) => {
-  cy.get('[data-test="error"]').should('be.visible').and('contain.text', errorMessage);
+Then('I should see the checkout error for {string}', (userKey: string) => {
+  cy.fixture('checkoutUsers').then((users) => {
+    const expectedMessage = users[userKey].message;
+    cy.get('[data-test="error"]')
+      .should('be.visible')
+      .and('have.text', expectedMessage);
+  });
 });

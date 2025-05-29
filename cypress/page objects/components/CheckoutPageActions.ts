@@ -1,13 +1,13 @@
 export class CheckoutPageActions {
-    getFirstNameField() {
+    getFirstName() {
       return cy.get('[data-test="firstName"]');
     }
   
-    getLastNameField() {
+    getLastName() {
       return cy.get('[data-test="lastName"]');
     }
   
-    getPostalCodeField() {
+    getPostalCode() {
       return cy.get('[data-test="postalCode"]');
     }
   

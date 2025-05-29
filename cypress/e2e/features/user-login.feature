@@ -2,25 +2,26 @@ Feature: Login feature
 
   Scenario Outline: Login with valid credentials
     Given I open the login page
-    When I enter username "<username>" and password "<password>"
+    When I log in with "<userType>" user data
     Then I click the login button
     And I should be redirected to the products page
 
     Examples:
-      | username                | password     |
-      | standard_user           | secret_sauce |
-      | performance_glitch_user | secret_sauce |
-      | problem_user            | secret_sauce |
+      | userType    |
+      | standard    |
+      | glitch |
+      | problem     |
 
-  Scenario Outline: Login with invalid credentials
+
+  Scenario Outline: Show error message for invalid login scenarios
     Given I open the login page
-    When I enter username "<username>" and password "<password>"
+    When I log in with "<userType>" user data
     Then I click the login button
-    And I should see a login error "<message>" message
+    Then I should see the error message for "<userType>"
 
     Examples:
-      | username        | password     | message                                                                   |
-      | locked_out_user | secret_sauce | Epic sadface: Sorry, this user has been locked out.                       |
-      |                 | secret_sauce | Epic sadface: Username is required                                        |
-      | standard_user   |              | Epic sadface: Password is required                                        |
-      | invalid_user    | wrong_pass   | Epic sadface: Username and password do not match any user in this service |
+      | userType        |
+      | locked          |
+      | missingUsername |
+      | missingPassword |
+      | invalid         |
