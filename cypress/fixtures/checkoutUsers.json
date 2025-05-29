@@ -1,0 +1,26 @@
+{
+    "default": {
+      "firstName": "Fotini",
+      "lastName": "Tester",
+      "postalCode": "12345"
+    },
+    "missingAllButFirst": {
+      "firstName": "Fotini",
+      "lastName": "",
+      "postalCode": "",
+      "message": "Error: Last Name is required"
+    },
+    "missingPostalCode": {
+      "firstName": "Fotini",
+      "lastName": "Tester",
+      "postalCode": "",
+      "message": "Error: Postal Code is required"
+    },
+    "missingAll": {
+      "firstName": "",
+      "lastName": "",
+      "postalCode": "",
+      "message": "Error: First Name is required"
+    }
+  }
+  
