@@ -30,11 +30,4 @@ jobs:
       - name: Run Cypress tests
         run: npm run test
 
-      - name: Generate Allure report
-        run: npm run allure:generate
-
-      - name: Upload Allure results
-        uses: actions/upload-artifact@v2
-        with:
-          name: allure-report
-          path: allure-report
+     
