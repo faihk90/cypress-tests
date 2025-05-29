@@ -1,6 +1,6 @@
 import { assertPricesSorted } from "../../support/helpers/priceUtils";
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { InventoryPage } from "../../page objects/pages/InventoryPage";
+import { InventoryPage } from "../../page-objects/pages/InventoryPage";
 import { assertNamesSorted } from "../../support/helpers/nameUtils";
 const externalUrl = Cypress.env('externalUrl');
 

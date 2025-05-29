@@ -1,5 +1,5 @@
 
-import { LoginPage } from "../../page objects/pages/LoginPage";
+import { LoginPage } from "../../page-objects/pages/LoginPage";
 import users from "../../fixtures/users.json";
 
 export function loginWithUserType(userType: string) {
