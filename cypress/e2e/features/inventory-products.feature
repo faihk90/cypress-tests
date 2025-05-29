@@ -41,12 +41,12 @@ Feature: Inventory feature
         And I click "All Items" from the menu
         Then I should stay on the inventory page
 
-
+    
     Scenario: Navigate to About from the burger menu
         When I click the burger menu button
         And I click "About" from the menu
         Then I should be redirected to the Sauce Labs site
-
+    
     Scenario: Reset App State from the burger menu
         When I add the product "Sauce Labs Backpack" to the cart
         And I click the burger menu button

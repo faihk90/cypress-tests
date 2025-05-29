@@ -54,11 +54,11 @@ Then('the products should be sorted by price in {string} order', (order: "asc" |
   });
   
   Then('I should be redirected to the Sauce Labs site', () => {
-    cy.origin(externalUrl, () => {
-      cy.url().should('include', new URL(externalUrl).hostname);
+    cy.origin('https://saucelabs.com', () => {
+      cy.url().should('include', 'saucelabs.com');
     });
   });
-
+  
   Then('the cart should be empty', () => {
     InventoryPage.getInventoryPageActions().getCartBadge().should('not.exist');
   });
