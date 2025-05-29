@@ -7,6 +7,7 @@ import { configureAllureAdapterPlugins } from "@mmisty/cypress-allure-adapter/pl
 export default defineConfig({
   e2e: {
     baseUrl: "https://www.saucedemo.com",
+    externalUrl: 'https://saucelabs.com',
     specPattern: "cypress/e2e/**/*.feature",
     supportFile: "cypress/support/e2e.js",
 

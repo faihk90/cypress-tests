@@ -2,6 +2,7 @@ import { assertPricesSorted } from "../../support/helpers/priceUtils";
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { InventoryPage } from "../../page objects/pages/InventoryPage";
 import { assertNamesSorted } from "../../support/helpers/nameUtils";
+const externalUrl = Cypress.env('externalUrl');
 
 When('I click on the sort dropdown menu', () => {
   InventoryPage.getInventoryPageActions().getSortDropdown().click();
@@ -53,11 +54,11 @@ Then('the products should be sorted by price in {string} order', (order: "asc" |
   });
   
   Then('I should be redirected to the Sauce Labs site', () => {
-    cy.origin('https://saucelabs.com', () => {
-      cy.url().should('include', 'saucelabs.com');
+    cy.origin(externalUrl, () => {
+      cy.url().should('include', new URL(externalUrl).hostname);
     });
   });
-  
+
   Then('the cart should be empty', () => {
     InventoryPage.getInventoryPageActions().getCartBadge().should('not.exist');
   });
