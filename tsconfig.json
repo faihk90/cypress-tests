@@ -4,6 +4,9 @@
     "target": "ES2020",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+    "types": ["cypress", "node"],
+    "lib": ["ES2020", "DOM"]
+  },
+  "include": ["cypress/**/*.ts"]
 }

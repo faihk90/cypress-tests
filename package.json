@@ -1,29 +1,69 @@
 {
-  "name": "cypress-project",
+  "name": "cypress-app-portal-host",
   "version": "1.0.0",
-  "type": "module",
-  "description": "",
+  "description": "Automated tests with Cypress for app-portal-host",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run --env allure=true",
-    "allure:generate": "allure generate ./allure-results --clean -o ./allure-report",
-    "allure:open": "allure open ./allure-report"
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --browser chrome --env allure=true",
+    "cypress-with-allure": "cypress run --browser chrome --spec \"**/harmonised-classifications.feature\" --env allure=true",
+    "cypress-with-allure-run-all-tests": "cypress run --browser electron --spec \"cypress/e2e/**/*.feature\" --env allure=true",
+    "cleanfolders": "rm -R -f cypress/videos && rm -R -f cypress/screenshots && rm -R -f cypress/reports && rm -R -f cypress/reports/app-portal-host-allure-report && rm -R -f allure-results",
+    "allure:reports": "allure generate allure-results --clean -o cypress/reports/app-portal-host-allure-report",
+    "beforetests": "npm run cleanfolders",
+    "aftertests": "npm run allure:reports",
+    "tests": "npm run cy:run",
+    "allure:open": "allure open cypress/reports/app-portal-host-allure-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://echa-ecm@dev.azure.com/echa-ecm/IUCDAS/_git/iucdas-app-portal-host"
   },
   "cypress-cucumber-preprocessor": {
-    "stepDefinitions": "cypress/e2e/stepDefinitions/**/*.ts"
+    "stepDefinitions": [
+      "cypress/e2e/stepDefinitions/**/*.ts"
+    ]
   },
-  "keywords": [],
+  "workspaces": [
+    "smoke"
+  ],
+  "keywords": [
+    "app-portal-host",
+    "cypress"
+  ],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "@cypress/webpack-batteries-included-preprocessor": "latest",
+    "@cypress/webpack-preprocessor": "latest",
+    "@mmisty/cypress-allure-adapter": "latest",
+    "allure-commandline": "latest",
+    "cypress-mochawesome-reporter": "latest",
+    "cypress-multi-reporters": "latest",
+    "cypress-real-events": "latest",
+    "eslint-plugin-es": "^4.1.0",
+    "feature-to-md": "latest",
+    "mocha-junit-reporter": "latest",
+    "node-polyfill-webpack-plugin": "^4.0.0",
+    "prettier": "latest",
+    "ts-loader": "latest",
+    "typescript": "latest"
+  },
   "devDependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
-    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.5",
-    "@cypress/webpack-preprocessor": "^6.0.4",
-    "@mmisty/cypress-allure-adapter": "^3.2.3",
-    "allure-commandline": "^2.34.0",
-    "cypress": "^13.17.0",
-    "esbuild": "^0.25.5",
-    "ts-loader": "^9.5.2",
-    "tsconfig-paths-webpack-plugin": "^4.2.0"
+    "@badeball/cypress-cucumber-preprocessor": "^24.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
+    "@types/cypress": "^1.1.3",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "cypress": "^15.5.0",
+    "cypress-delete-downloads-folder": "latest",
+    "esbuild": "^0.27.3",
+    "esbuild-plugin-polyfill-node": "^0.3.0",
+    "eslint": "^8.57.0",
+    "ts-node": "latest",
+    "tsconfig-paths-webpack-plugin": "^4.1.0"
+  },
+  "volta": {
+    "node": "22.20.0"
   }
 }
